@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Messages</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin.html">Admin</a>
+  </header>
+
+  <main class="messages">
+    <h2>Submitted Messages</h2>
+    <ul id="message-list"></ul>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Lalith Lochan Natakala. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // Fetch messages from localStorage
+    const messages = JSON.parse(localStorage.getItem("messages")) || [];
+    const messageList = document.getElementById("message-list");
+
+    if (messages.length === 0) {
+      messageList.innerHTML = "<p>No messages found.</p>";
+    } else {
+      messages.forEach((msg, index) => {
+        const listItem = document.createElement("li");
+        listItem.innerHTML = `
+          <strong>${index + 1}. Name:</strong> ${msg.name}<br>
+          <strong>Email:</strong> ${msg.email}<br>
+          <strong>Message:</strong> ${msg.message}<br>
+          <strong>Date:</strong> ${msg.date}<hr>
+        `;
+        messageList.appendChild(listItem);
+      });
+    }
+  </script>
+</body>
+</html>
